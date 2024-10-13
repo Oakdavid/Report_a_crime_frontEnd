@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register-form</title>
+    <link rel="stylesheet" href="signUp.css">
+</head>
+<body>
+    <section class="register-Section" id="registerSection">
+        <div class="container">
+            <h2>Sing Up</h2>
+            <form id="registerForm" onsubmit="submitForm(event)"> 
+                <label for="userName">UserName:</label>
+                <input type="text" id="userName" name="userName" required><br><br>
+
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName"><br><br>
+
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName"><br><br>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required><br><br>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <!-- <input type="checkbox" id="showPassword" onclick="togglePasswordVisibility()"> Show Password<br><br> -->
+
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" required><br><br>
+    
+                <label for="isAnonymous">Are you anonymous?</label>
+                <select id="isAnonymous" name="isAnonymous" required>th
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select><br><br>
+
+                <button type="submit" class="btn-primary">Sign Up</button>
+            </form>
+
+            <p>Already have an account? <a href="../Login/login.html">Log in here</a></p>
+            <p><a href="../HomePage/index.html">Return to Website</a></p>
+
+        </div>
+    </section>
+
+    <script src="signUp.js"></script>
+    
+</body>
+</html>

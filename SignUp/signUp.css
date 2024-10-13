@@ -1,0 +1,39 @@
+body {
+  
+    background-color: #f4f4f4;
+    background-image:url('/Pictures/marek-piwnicki-yohdiGFAHrc-unsplash.jpg');
+    background-position: center;
+    background-attachment: fixed;
+
+    background-color: #f4f4f4;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    color: white;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 40px;
+    color: rgb(246, 246, 64);;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+    text-align: center;
+    text-wrap: nowrap;
+}
+a:-webkit-any-link {
+    color: rgb(246, 246, 64);
+    cursor: pointer;
+    text-decoration: underline;
+}
