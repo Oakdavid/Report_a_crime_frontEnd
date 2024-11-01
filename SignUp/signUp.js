@@ -22,7 +22,7 @@ async function submitForm(event){
 
     try
     {
-        const response = await fetch('https://localhost:7240/api/User/Register',
+        const response = await fetch('https://localhost:7240/api/User/SignUp',
             {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -38,6 +38,10 @@ async function submitForm(event){
         {
             alert(result.message);
             window.location.href = '/login.html';
+        }
+        else if(response.status === "User already exists")
+        {
+            alert(result.message);
         }
         else
         {
