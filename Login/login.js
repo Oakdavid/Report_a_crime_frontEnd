@@ -42,7 +42,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     {
         console.error("Error during fetch: ", error);
         alert("An error occured. Please try again later.");
-
     }
     
 })
