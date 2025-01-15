@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report a Crime</title>
+    <link rel="stylesheet" href="/Report/report.css">
+</head>
+<body>
+    <div class="container">
+            <h1>Report a Crime</h1>
+            <form id="reportForm">
+                <!-- Category Selection -->
+                <label for="category">Category:</label>
+                <select id="category" name="categoryId" required>
+                    <option value="" disabled selected>Select a category</option>
+                    <!-- Categories will be populated dynamically -->
+                </select>
+    
+                <!-- Offender Information -->
+                <label for="nameOfOffender">Name of the Offender:</label>
+                <input type="text" id="nameOfOffender" name="nameOfTheOffender" placeholder="Enter offender's name">
+    
+                <label for="heightOfOffender">Height of the Offender:</label>
+                <select id="heightOfOffender" name="heightOfTheOffender" required>
+                    <option value="" disabled selected>Select offender's height</option>
+                    <option value="4ft">4 feet</option>
+                    <option value="4.5ft">4.5 feet</option>
+                    <option value="5ft">5 feet</option>
+                    <option value="5.5ft">5.5 feet</option>
+                    <option value="6ft">6 feet</option>
+                    <option value="6.5ft">6.5 feet</option>
+                    <option value="7ft">7 feet</option>
+                    <option value="7.5ft">7.5 feet</option>
+                    <option value="8ft">8 feet</option>
+                </select>
+    
+                <label for="didHappenInPresence">Did it happen in your presence?</label>
+                <select id="didHappenInPresence" name="didItHappenInYourPresence" required>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                <label for="reportDescription">Report Description:</label>
+                <textarea id="reportDescription" name="reportDescription" rows="4" placeholder="Describe the incident..." required></textarea>
+
+                <label for="uploadEvidence">Upload Evidence (Optional):</label>
+                <input type="file" id="uploadEvidence" name="uploadEvidence" accept="image/*,video/*">
+
+                <input type="hidden" id="location" name="location">
+                
+                <button type="submit" class="btn">Submit Report</button>
+            </form>
+    </div>
+
+
+    <script src="/Report/report.js"></script>
+</body>
+</html>
