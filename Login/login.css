@@ -1,64 +1,127 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background-image:url('/Pictures/marek-piwnicki-yohdiGFAHrc-unsplash.jpg');
+    background-image: url('/Pictures/marek-piwnicki-yohdiGFAHrc-unsplash.jpg');
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
 }
+
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 1;
+}
+
 .login-container {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    width: 350px;
+    text-align: center;
 }
+
 .login-container h2 {
-    margin-bottom: 20px;
-    text-align: -webkit-center;
-    font-weight: bolder;
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
 }
+
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: left;
 }
+
 .input-group label {
-    display: block;
+    font-size: 14px;
     margin-bottom: 5px;
+    display: block;
+    color: #555;
 }
+
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    font-size: 14px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
+    outline: none;
+    transition: all 0.3s;
 }
+
+.input-group input:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+}
+
 .login-btn {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #28a745;
     border: none;
     color: white;
     font-size: 16px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s;
 }
+
 .login-btn:hover {
     background-color: #218838;
 }
-element.style {
-    text-align: center;
-    display: flow-root;
+
+.login-links {
+    margin-top: 20px;
+    font-size: 14px;
 }
 
-p {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    unicode-bidi: isolate;
-    text-align: center;
-    text-wrap: nowrap;
+.login-links a {
+    color: #28a745;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #184d17;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        width: 90%;
+        padding: 20px;
+    }
 }
