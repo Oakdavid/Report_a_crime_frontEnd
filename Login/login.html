@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Home - Login</title>
     <link rel="stylesheet" href="/Login/login.css">
 </head>
 <body>
-    
-    <nav class="login-container">
+    <div class="background-overlay"></div>
+    <div class="login-container">
         <h2>Login</h2>
         <form id="loginForm">
             <div class="input-group">
@@ -18,20 +18,19 @@
             </div>
 
             <div class="input-group">
-                <label for="password">Passsword</label>
-                <input type="password" id="password" name="password" placeholder="Enter Passsword">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your Password" required>
                 <p class="passwordError"></p>
             </div>
 
             <button type="submit" class="login-btn">Log in</button>
-
         </form>
 
-        <p>Not yet signed up? <a href="../SignUp/signUp.html"> Sign up here</a></p>
-        <p><a href="/index.html">Return to HomePage</a></p>
+        <div class="login-links">
+            <p>Not yet signed up? <a href="../SignUp/signUp.html">Sign up here</a></p>
+            <p><a href="/index.html" class="back-btn">Back to Home</a></p>
         </div>
-    </nav>
-
+    </div>
     <script src="/Login/login.js"></script>
 </body>
 </html>
