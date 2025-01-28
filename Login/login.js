@@ -5,28 +5,38 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
+    console.log(email);
+    console.log(password)
+
     document.querySelector('.userError').innerText = '';
     document.querySelector('.passwordError').innerText = '';
     
     try
     {
-        const response = await fetch('https://localhost:7240/api/User/Login', {
+        const response = await fetch("https://localhost:7240/api/User/Login", {
     
-            method: 'POST',
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: email,
+                EmailOrUserName: email,
                 password: password
+                
             })
         });
         
         const data = await response.json();
+        console.log(data);
         if(response.ok)
         {
-            alert("Login successful");
-            window.location.href = "../Dashboard/dashboard.html";
+            Swal.fire({
+                title: "Success!",
+                icon: "success",
+                draggable: true,
+                timer: 5000
+              });
+            location.href = "../Dashboard/dashboard.html";
         }
         else
         {
@@ -34,16 +44,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             alert.console.error("Couldnt login successfully");
             
         }
-
-        // if (response.ok) {
-        //     const data = await response.json();
-        //     alert("Login successful!");
-        //     window.location.href = "../Dashboard/dashboard.html";
-        // } else {
-        //     const errorData = await response.json();
-        //     alert("Login failed: " + errorData.message);
-        //     console.error("Login error: ", errorData);
-        // }
 
     }
     catch(error)
