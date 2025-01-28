@@ -2,46 +2,56 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 {
     event.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const userEmail = document.querySelector('#userEmail').value;
+    const password = document.querySelector('#user-password').value;
 
-    console.log("Email:", email);  // Logging for debugging
+    console.log("Email:", userEmail);  // Logging for debugging
     console.log("Password:", password);
     
     try
     {
         const response = await fetch('https://localhost:7240/api/User/Login', {
     
-            method: 'POST',
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                email: email,
-                password: password
+                EmailOrUserName: userEmail,
+                Password: password
             })
-        });
-        console.log("Email", email);
-        console.log("Password", password);
-        
+        });        
         const data = await response.json();
         if(response.ok)
         {
-            alert("Login successful");
-            window.location.href = "../HomePage/index.html";
+            Swal.fire({
+                title: "Success",
+                icon: "success",
+                draggable: true,
+                timer: 9000,
+                
+              });
+            localStorage.setItem('jwt', data.token);
+            location.href = "../Dashboard/dashboard.html";
+            
         }
         else
         {
-            alert("Login failed: " + data.message)
-            alert.console.error("Couldnt login successfully");
-            
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Couldnt login",
+              });            
         }
 
     }
     catch(error)
     {
-        console.error("Error during fetch: ", error);
-        alert("An error occured. Please try again later.");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error,
+          });;
     }
     
 })

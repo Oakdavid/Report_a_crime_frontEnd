@@ -1,4 +1,8 @@
 // Line Chart for Crime Reports Over Time
+const category = document.querySelector("#category");
+category.addEventListener("click", () => {
+  location.href = "./Category/category.html";
+})
 const lineCtx = document.getElementById('lineChart').getContext('2d');
 const lineChart = new Chart(lineCtx, {
   type: 'line',
