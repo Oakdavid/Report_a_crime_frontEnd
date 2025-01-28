@@ -69,8 +69,50 @@ document.addEventListener("DOMContentLoaded", async () => {
                                     text: "The journal has been deleted.",
                                     icon: "success"
                                 });
+                                await populateCategories(token);
+                            }
+                        }
+                    });
+                }
+
+                if (event.target && event.target.matches(".update-btn")) {
+                    const deleteCategoryBtn = event.target;
+                    const categoryId = deleteCategoryBtn.dataset.id;
+
+                    const categoryNameText = document.querySelector("#category-name");
+                    const categoryDescriptionText = document.querySelector("#category-description");
+
+
+                    const objectData = {
+                        categoryId: categoryId,
+                        categoryName: categoryNameText.value,
+                        categoryDescription: categoryDescriptionText.value
+                    }
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then(async (result) => {
+                        if (result.isConfirmed) {
+                            const resp = await updateJournal(token, objectData);
         
-                                // Refresh the list after successful deletion
+                            if (!resp.status) {
+                                Swal.fire({
+                                    title: "Error!",
+                                    text: "Failed to delete the journal.",
+                                    icon: "error"
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "The journal has been deleted.",
+                                    icon: "success"
+                                });
                                 await populateCategories(token);
                             }
                         }
@@ -113,12 +155,12 @@ async function getAllCategories(token)
 
 async function populateCategories(data)
 {
+    const tableBody = document.querySelector("#table-body");
+    tableBody.innerHTML = "";
     if(data.status)
         {
-            const tableBody = document.querySelector("#table-body");
             if(data.data && Array.isArray(data.data) && data.data.length > 0)
             {
-                tableBody.innerHTML = "";
                 const newData = data.data; 
                 for(let i = 0; i < newData.length; i++)
                 {
@@ -128,9 +170,11 @@ async function populateCategories(data)
 
                     const name = document.createElement("td");
                     name.textContent = newData[i].categoryName;
+                    name.id = "category-name"
 
                     const description = document.createElement("td");
                     description.textContent = newData[i].categoryDescription;
+                    description.id = "category-description";
 
                     const actionCell = document.createElement("td");
 
@@ -140,13 +184,13 @@ async function populateCategories(data)
                     const updateBtn = document.createElement("button");
                     updateBtn.textContent = "Update";
                     updateBtn.classList.add("update-btn");
-                    updateBtn.dataset.id = newData[i].id;
+                    updateBtn.dataset.id = newData[i].categoryId;
 
                     
                     const deleteBtn = document.createElement("button");
                     deleteBtn.textContent = "Delete";
                     deleteBtn.classList.add("delete-btn");
-                    deleteBtn.dataset.id = newData[i].id;
+                    deleteBtn.dataset.id = newData[i].categoryId;
 
                     deleteBtn.style.width = "40%";
                     updateBtn.style.width = "40%";
@@ -197,14 +241,35 @@ async function addCategory(journalObject, token)
     }
 }
 
-export async function deleteJournal(token, categoryId)
+async function deleteJournal(token, categoryId)
 {
-    const response = await fetch(`https://localhost:7173/api/Journal/delete/journal/?categoryId=${categoryId}`, {
+    const response = await fetch(`https://localhost:7240/api/Category/DeleteCategory?categoryId=${categoryId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
         },
+    });
+
+    if (!response.ok) {
+        const error = await response.json();  // Parse the response
+        return { status: false }
+    }
+
+    const data = await response.json();
+    return { status: true, data };
+}
+
+async function updateJournal(token, category)
+{
+    const response = await fetch(`https://localhost:7240/api/Category/UpdateCategory`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+        body : JSON.stringify(category),
+
     });
 
     if (!response.ok) {
