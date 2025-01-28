@@ -1,25 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Populate categories dynamically (Fetch from API)
-    fetch("https://localhost:7240/api/Category") // Replace with your category endpoint
-        .then(response => response.json())
-        .then(categories => {
-            const categorySelect = document.getElementById("category");
-            categories.forEach(category => {
-                const option = document.createElement("option");
-                option.value = category.categoryId;
-                option.textContent = category.categoryName;
-                categorySelect.appendChild(option);
-            });
-        })
-        .catch(error => console.error("Error fetching categories:", error));
+document.addEventListener("DOMContentLoaded", async () => {
+    // Populate categories dynamically
+    const categoryDropdown = document.querySelector("#category");
+    const categories = await fetchCategories();
+    
+    if (categories.status) {
+        // Populate categories if fetched successfully
+        categories.data.forEach(category => {
+            const option = document.createElement("option");
+            option.value = category.id;
+            option.textContent = category.name;
+            categoryDropdown.appendChild(option);
+            console.log(option);
+        });
+    } else {
+        alert(categories.message || "Failed to fetch categories.");
+    }
 
     // Fetch location dynamically
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             position => {
                 const { latitude, longitude } = position.coords;
-                // Reverse geocoding or use these coordinates directly
-                fetch(`https://geocode.xyz/${latitude},${longitude}?geoit=json`)
+                 fetch(localhost:7240/api/Category/AllCategories)//(`https://geocode.xyz/${latitude},${longitude}?geoit=json`)
                     .then(response => response.json())
                     .then(data => {
                         const locationInput = document.getElementById("location");
@@ -39,30 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         const formData = new FormData(form);
-        const reportData = {
-            categoryId: formData.get("categoryId"),
-            nameOfTheOffender: formData.get("nameOfTheOffender"),
-            heightOfTheOffender: formData.get("heightOfTheOffender"),
-            didItHappenInYourPresence: formData.get("didItHappenInYourPresence") === "true",
-            reportDescription: formData.get("reportDescription"),
-            location: formData.get("location"),
-        };
-
-        if (formData.get("uploadEvidence")) {
-            reportData.uploadEvidence = formData.get("uploadEvidence");
-        }
 
         try {
             const response = await fetch("https://localhost:7240/api/Report", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(reportData),
+                body: formData, // Use FormData directly
             });
 
             const result = await response.json();
-            if (result.status) {
+            if (response.ok) {
                 alert("Report created successfully!");
                 form.reset();
             } else {
@@ -74,3 +61,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+// Fetch categories function
+async function fetchCategories() {
+    try {
+        const response = await fetch("https://localhost:7240/api/Category/AllCategories", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        if (response.ok) {
+            const resp = await response.json();
+            return { status: true, data: resp.data };
+        } else {
+            return { status: false, message: "Categories not found" };
+        }
+    } catch (error) {
+        console.error("Error fetching categories:", error);
+        return { status: false, message: "An error occurred while fetching categories." };
+    }
+}
