@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./viewCategory.css">
+</head>
+<body>
+    <h1>Category Management</h1>
+
+  <!-- Add Category Form -->
+  <div class="form-container">
+    <h2>Add New Category</h2>
+    <form action="/add-category" method="POST">
+      <label for="category-name">Category Name</label>
+      <input type="text" id="category-name" name="category_name" placeholder="Enter category name" required>
+      
+      <label for="category-description">Category Description</label>
+      <textarea id="category-description" name="category_description" placeholder="Enter category description" required></textarea>
+      
+      <button type="submit">Add Category</button>
+    </form>
+  </div>
+
+  <!-- Category Table -->
+  <div class="table-container">
+    <h2>All Categories</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example of category rows -->
+        <tr>
+          <td>1</td>
+          <td>Fast Food</td>
+          <td>Quick meals and snacks</td>
+          <td>
+            <div class="action-buttons">
+              <button class="update-btn" onclick="updateCategory(1)">Update</button>
+              <button class="delete-btn" onclick="deleteCategory(1)">Delete</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Confectionery</td>
+          <td>Cakes, pastries, and desserts</td>
+          <td>
+            <div class="action-buttons">
+              <button class="update-btn" onclick="updateCategory(2)">Update</button>
+              <button class="delete-btn" onclick="deleteCategory(2)">Delete</button>
+            </div>
+          </td>
+        </tr>
+        <!-- Add more rows dynamically -->
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
