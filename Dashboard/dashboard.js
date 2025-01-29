@@ -1,4 +1,5 @@
 // Line Chart for Crime Reports Over Time
+
 const category = document.querySelector("#category");
 category.addEventListener("click", () => {
   location.href = "./Category/category.html";

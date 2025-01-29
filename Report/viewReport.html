@@ -16,18 +16,26 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Date Created</th>
-          <th>Actions</th>
+          <th>Date Occurred</th>
+          <th>Category Name</th>
+          <th>Location</th>
+          <th>HeightOfTheOffender</th>
+          <th>Did It Happen In Your Presence</th>
+          <th>Report Description</th>
+          <th>Pictorial Evidence</th>
+          <th>Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="table-body">
         <!-- Example rows -->
         <tr>
           <td>1</td>
-          <td>Monthly Sales Report</td>
-          <td>An analysis of the monthly sales performance.</td>
+          <td>Report</td>
+          <td>Report for the Month.</td>
+          <td>2025-01-15</td>
+          <td>2025-01-15</td>
+          <td>2025-01-15</td>
+          <td>2025-01-15</td>
           <td>2025-01-15</td>
           <td>
             <div class="action-buttons">
@@ -36,39 +44,30 @@
             </div>
           </td>
         </tr>
+
         <tr>
-          <td>2</td>
-          <td>Customer Feedback Report</td>
-          <td>A summary of customer feedback collected in January.</td>
-          <td>2025-01-20</td>
+          <td>1</td>
+          <td>Report</td>
+          <td>Report for the Month.</td>
+          <td>2025-01-15</td>
+          <td>2025-01-15</td>
+          <td>2025-01-15</td>
+          <td>2025-01-15</td>
+          <td>2025-01-15</td>
           <td>
             <div class="action-buttons">
-              <button class="view-btn" onclick="viewReport(2)">View</button>
-              <button class="delete-btn" onclick="deleteReport(2)">Delete</button>
+              <button class="view-btn" onclick="viewReport(1)">View</button>
+              <button class="delete-btn" onclick="deleteReport(1)">Delete</button>
             </div>
           </td>
         </tr>
+        
         <!-- Add more rows dynamically -->
       </tbody>
     </table>
   </div>
 
-  <script>
-    // Placeholder function for viewing a report
-    function viewReport(id) {
-      alert(`Viewing report with ID: ${id}`);
-      // Redirect to a report details page or fetch report details via API
-      // window.location.href = `/view-report/${id}`;
-    }
-
-    // Placeholder function for deleting a report
-    function deleteReport(id) {
-      const confirmDelete = confirm(`Are you sure you want to delete report with ID: ${id}?`);
-      if (confirmDelete) {
-        alert(`Report with ID ${id} deleted.`);
-        // Add your delete logic here (e.g., call an API to delete the report)
-      }
-    }
+  <script src="../Report/viewReport.js">
   </script>
 
 </body>
