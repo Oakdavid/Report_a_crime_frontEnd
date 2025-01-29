@@ -55,18 +55,18 @@ document.addEventListener("DOMContentLoaded", async () => {
                         confirmButtonText: "Yes, delete it!"
                     }).then(async (result) => {
                         if (result.isConfirmed) {
-                            const resp = await deleteJournal(token, categoryId);
+                            const resp = await deleteCategory(token, categoryId);
         
                             if (!resp.status) {
                                 Swal.fire({
                                     title: "Error!",
-                                    text: "Failed to delete the journal.",
+                                    text: "Failed to delete the category.",
                                     icon: "error"
                                 });
                             } else {
                                 Swal.fire({
                                     title: "Deleted!",
-                                    text: "The journal has been deleted.",
+                                    text: "The category has been deleted.",
                                     icon: "success"
                                 });
                                 await populateCategories(token);
@@ -96,21 +96,21 @@ document.addEventListener("DOMContentLoaded", async () => {
                         showCancelButton: true,
                         confirmButtonColor: "#3085d6",
                         cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, delete it!"
+                        confirmButtonText: "Yes, update it!"
                     }).then(async (result) => {
                         if (result.isConfirmed) {
-                            const resp = await updateJournal(token, objectData);
+                            const resp = await updateCategory(token, objectData);
         
                             if (!resp.status) {
                                 Swal.fire({
                                     title: "Error!",
-                                    text: "Failed to delete the journal.",
+                                    text: "Failed to update the category.",
                                     icon: "error"
                                 });
                             } else {
                                 Swal.fire({
-                                    title: "Deleted!",
-                                    text: "The journal has been deleted.",
+                                    title: "Update!",
+                                    text: "The catergory has been updated.",
                                     icon: "success"
                                 });
                                 await populateCategories(token);
@@ -192,8 +192,8 @@ async function populateCategories(data)
                     deleteBtn.classList.add("delete-btn");
                     deleteBtn.dataset.id = newData[i].categoryId;
 
-                    deleteBtn.style.width = "40%";
-                    updateBtn.style.width = "40%";
+                    deleteBtn.style.width = "100%";
+                    updateBtn.style.width = "100%";
 
 
                     actionButton.appendChild(updateBtn);
@@ -241,7 +241,7 @@ async function addCategory(journalObject, token)
     }
 }
 
-async function deleteJournal(token, categoryId)
+async function deleteCategory(token, categoryId)
 {
     const response = await fetch(`https://localhost:7240/api/Category/DeleteCategory?categoryId=${categoryId}`, {
         method: "DELETE",
@@ -260,7 +260,7 @@ async function deleteJournal(token, categoryId)
     return { status: true, data };
 }
 
-async function updateJournal(token, category)
+async function updateCategory(token, category)
 {
     const response = await fetch(`https://localhost:7240/api/Category/UpdateCategory`, {
         method: "PUT",

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       if (result.status) {
         statusMessage.textContent = "Geolocation created successfully!";
-        addRowToTable(result);
+        addRowToTable(result); //result.data
       } else {
         statusMessage.textContent = result.message || "Failed to create geolocation.";
       }
@@ -32,11 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function addRowToTable(data) {
       const row = document.createElement("tr");
       row.innerHTML = `
-        <td>${data.latitude || "N/A"}</td>
-        <td>${data.longitude || "N/A"}</td>
-        <td>${data.city || "N/A"}</td>
-        <td>${data.ipAddress || "N/A"}</td>
-        <td>${data.status ? "Success" : "Failed"}</td>
+      <td>${data.id || "N/A"}</td>
+      <td>${data.latitude || "N/A"}</td>
+      <td>${data.longitude || "N/A"}</td>
+      <td>${data.city || "N/A"}</td>
+      <td>${data.ipAddress || "N/A"}</td>
+      <td>${data.reportId || "N/A"}</td>
+      <td>${data.status ? "Active" : "Inactive"}</td>
       `;
       tableBody.appendChild(row);
     }

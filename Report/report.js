@@ -72,9 +72,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                     draggable: true,
                     timer: 9000,
                     
-                  });
-               // form.reset();
-                window.location.href == "../index.html";
+               }).then(() => {
+                  window.location.href = "../index.html";
+                });
+
             } else {
                 
                 Swal.fire({

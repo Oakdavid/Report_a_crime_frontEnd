@@ -10,40 +10,34 @@
   <div class="container">
 
     <a href="javascript:history.back()" class="back-button">← Back</a>
-    
-    <div class="header">
-        <h1>Report a Crime - Geolocation</h1>
-        <p>Provide geolocation details when reporting a crime.</p>
-    </div>
+
+    <header class="header">
+      <h1>Geolocation Management</h1>
+    </header>
 
     <main>
-      <!-- Form for creating new geolocation -->
+      <!-- Geolocation Creation Form -->
       <section class="form-section">
-        <h2>Create Geolocation</h2>
+        <h2>Create New Geolocation</h2>
         <form id="geolocation-form">
           <div class="form-group">
             <label for="latitude">Latitude:</label>
-            <input type="text" step="any" id="latitude" name="latitude" placeholder="Enter Latitude">
+            <input type="text" id="latitude" name="latitude" placeholder="Enter Latitude" required>
           </div>
           <div class="form-group">
             <label for="longitude">Longitude:</label>
-            <input type="text" step="any" id="longitude" name="longitude" placeholder="Enter Longitude">
+            <input type="text" id="longitude" name="longitude" placeholder="Enter Longitude" required>
           </div>
           <div class="form-group">
             <label for="city">City:</label>
-            <input type="text" id="city" name="city" placeholder="Enter City">
+            <input type="text" id="city" name="city" placeholder="Enter City" required>
           </div>
           <button type="submit">Create Geolocation</button>
         </form>
       </section>
 
-      <!-- Display status and messages -->
-      <section class="status-section">
-        <h2>Status</h2>
-        <p id="status-message">Fill in the form to create a geolocation.</p>
-      </section>
 
-      <!-- Table to display geolocation data -->
+      <!-- Geolocation Records Table -->
       <section class="table-section">
         <h2>Geolocation Records</h2>
         <table id="geolocation-table">
@@ -64,6 +58,7 @@
         </table>
       </section>
     </main>
+
   </div>
 
   <script src="/Geolocation/geolocation.js"></script>
