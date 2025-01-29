@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         navigator.geolocation.getCurrentPosition(
             position => {
                 const { latitude, longitude } = position.coords;
-                 fetch(localhost:7240/api/Category/AllCategories)//(`https://geocode.xyz/${latitude},${longitude}?geoit=json`)
+                 fetch("https:/api/Category/AllCategories")//(`https://geocode.xyz/${latitude},${longitude}?geoit=json`)
                     .then(response => response.json())
                     .then(data => {
                         const locationInput = document.getElementById("location");
