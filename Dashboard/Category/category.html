@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./viewCategory.css">
+    <link rel="stylesheet" href="/Dashboard/Category/viewCategory.css">
 </head>
 <body>
     <h1>Category Management</h1>
@@ -12,14 +12,13 @@
   <!-- Add Category Form -->
   <div class="form-container">
     <h2>Add New Category</h2>
-    <form action="/add-category" method="POST">
+    <form>
       <label for="category-name">Category Name</label>
       <input type="text" id="category-name" name="category_name" placeholder="Enter category name" required>
       
       <label for="category-description">Category Description</label>
       <textarea id="category-description" name="category_description" placeholder="Enter category description" required></textarea>
-      
-      <button type="submit">Add Category</button>
+      <button id="submit-btn" type="submit">Add Category</button>
     </form>
   </div>
 
@@ -35,7 +34,7 @@
           <th>Actions</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="table-body">
         <!-- Example of category rows -->
         <tr>
           <td>1</td>
@@ -63,5 +62,8 @@
       </tbody>
     </table>
   </div>
+  <script src="/utils/utils.js"></script>
+  <script src="/Dashboard/Category/category.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

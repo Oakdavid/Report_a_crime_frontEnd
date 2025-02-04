@@ -36,21 +36,37 @@ async function submitForm(event){
 
         if(response.ok)
         {
-            alert(result.message);
-            window.location.href = '/login.html';
+            Swal.fire({
+                title: "Success!",
+                icon: result.message,
+                draggable: true,
+                timer: 9000
+              });
+            location.href = "../Login/login.html";
         }
         else if(response.status === "User already exists")
         {
-            alert(result.message);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: result.message,
+              });
         }
         else
         {
-            alert(`Error: ${result.message}`);
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: result.message,
+              });
         }
     }
     catch(error)
     {
-        
-        alert('An error occured while registering. Please try again later.');
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: 'An error occured while registering. Please try again later.',
+          });
     }
 }
