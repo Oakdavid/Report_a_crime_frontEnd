@@ -50,6 +50,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (uploadEvidence.files.length > 0) {
             formData.append("uploadEvidence", uploadEvidence.files[0]);
         }
+        else
+        {
+            formData.append("uploadEvidence", null);
+        }
 
         // Log FormData values (optional)
         for (let [key, value] of formData.entries()) {
@@ -72,9 +76,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                     draggable: true,
                     timer: 9000,
                     
-                  });
-               // form.reset();
-                window.location.href == "../index.html";
+                });
+               window.location.href = "../index.html";
             } else {
                 
                 Swal.fire({
