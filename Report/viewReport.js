@@ -4,11 +4,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   const dataFetched = await fetchReports(token);
   console.log("Fetched Data:", dataFetched);
 
+  const tableBody = document.querySelector("tbody");
+  tableBody.innerHTML = ""; // Clear any existing rows
+
   if (dataFetched.status) {
     const newData = dataFetched.data.data
-      renderReports(newData);
+      renderReports(newData,tableBody);
   } else {
-      console.error("Error fetching reports:", dataFetched.error);
+    tableBody.innerHTML = `<p id="inner">No report at the moment</p>`;
+    const inner = document.querySelector("#inner");
+    inner.style.textAlign = "center";
+    inner.style.width = "100%";
+
   }
 });
 
@@ -34,9 +41,8 @@ async function fetchReports(token) {
   }
 }
 
-function renderReports(reports) {
-  const tableBody = document.querySelector("tbody");
-  tableBody.innerHTML = ""; // Clear any existing rows
+function renderReports(reports, tableBody) {
+  
 
   if (Array.isArray(reports) && reports.length > 0) {
       reports.forEach(report => {
