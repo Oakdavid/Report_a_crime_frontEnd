@@ -3,9 +3,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const token = getToken()
         const categories = await getAllCategories(token);
         console.log(categories.data);
-        await populateCategories(categories);
-
         const tableBody = document.querySelector("#table-body");
+        tableBody.innerHTML = "";
+
+        await populateCategories(categories, tableBody);
+
 
 
         const submit = document.querySelector("#submit-btn");
@@ -15,7 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         if(submit)
         {
             submit.addEventListener("click", async (e) => {
-                e.preventDefault();
 
                 const categoryDate = {
                     categoryName : categoryName.value,
@@ -33,13 +34,23 @@ document.addEventListener("DOMContentLoaded", async () => {
                         icon: "success"
                     });
                     const categories = await getAllCategories(token);
-                    await populateCategories(categories);
+                    // await populateCategories(categories);
+                    window.location.reload();
+                }
+                else
+                {
+                    Swal.fire({
+                        title: "Oops....!",
+                        text: `${result.message}`,
+                        icon: "success"
+                    });
                 }
             })
         }
 
         if(tableBody)
         {
+            populateCategories(token);
             tableBody.addEventListener("click", async (event) => {
                 if (event.target && event.target.matches(".delete-btn")) {
                     const deleteCategoryBtn = event.target;
@@ -153,10 +164,9 @@ async function getAllCategories(token)
     }
 }
 
-async function populateCategories(data)
+async function populateCategories(data, tableBody)
 {
-    const tableBody = document.querySelector("#table-body");
-    tableBody.innerHTML = "";
+    
     if(data.status)
         {
             if(data.data && Array.isArray(data.data) && data.data.length > 0)
@@ -185,11 +195,14 @@ async function populateCategories(data)
                     updateBtn.textContent = "Update";
                     updateBtn.classList.add("update-btn");
                     updateBtn.dataset.id = newData[i].categoryId;
+                    updateBtn.style.background = "green";
+
 
                     
                     const deleteBtn = document.createElement("button");
                     deleteBtn.textContent = "Delete";
                     deleteBtn.classList.add("delete-btn");
+                    deleteBtn.style.background = "red";
                     deleteBtn.dataset.id = newData[i].categoryId;
 
                     deleteBtn.style.width = "40%";
