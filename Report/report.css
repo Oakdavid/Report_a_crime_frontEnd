@@ -1,13 +1,18 @@
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start; /* align to top */
+    min-height: 100vh;
+    background-image: url('/Pictures/background\ .jpg');
+    background-size: cover;
 }
+
+
 
 .container {
     background: #fff;
@@ -74,4 +79,19 @@ select:focus {
     outline: none;
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+    color: #0056b3;
 }

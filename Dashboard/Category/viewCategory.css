@@ -7,11 +7,15 @@ body {
     margin: 0;
     padding: 20px;
     background-color: #f8f9fa;
+    background-image: url('/Pictures/background\ .jpg');
+    background-size: cover;
   }
 
   h1 {
     text-align: center;
     margin-bottom: 20px;
+    color: rgb(229, 229, 239)
+    ;
   }
 
   .form-container, .table-container {
