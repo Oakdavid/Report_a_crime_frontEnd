@@ -1,8 +1,22 @@
-// Clear JWT token from localStorage
-localStorage.removeItem("token");
+// // Clear JWT token from localStorage
+// localStorage.removeItem("token");
 
-// Optionally clear other user-related data if needed
-// localStorage.removeItem("userInfo"); etc.
+// window.location.href = "/index.html?logout=success";
 
-// Redirect to login page after logout
-window.location.href = "/index.html";
+
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if(logoutBtn)
+    {
+        logoutBtn.addEventListener("click", function (e) {
+            e.preventDefault();
+            
+            localStorage.removeItem('jwt');
+
+            window.location.href = "/index.html?logout=success";
+           // window.location.href = "/Login/login.html?logout=success";
+
+        });
+    }
+});

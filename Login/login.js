@@ -58,3 +58,17 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     }
     
 })
+
+document.addEventListener("DOMContentLoaded", function () {
+  const params = new URLSearchParams(window.location.search);
+  const messageBox = document.getElementById("logoutMessage");
+
+  if (params.get("logout") === "success") {
+    messageBox.textContent = "You have been successfully logged out.";
+   
+    setTimeout(() => {
+      messageBox.textContent = "";
+    }, 3000);
+  }
+
+});
