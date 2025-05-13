@@ -40,7 +40,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             else
             {
               location.href = "/Dashboard/User/userDashboard.html"
-              //location.href = "../Dashboard/User/userDashboard.html"
             }
            
             
