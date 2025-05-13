@@ -4,9 +4,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
     const userEmail = document.querySelector('#userEmail').value;
     const password = document.querySelector('#user-password').value;
-
-    console.log("Email:", userEmail);  // Logging for debugging
-    console.log("Password:", password);
     
     try
     {
@@ -35,7 +32,17 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
                 
               });
             localStorage.setItem('jwt', data.token);
-            location.href = "../Dashboard/dashboard.html";
+            localStorage.setItem('role', data.role);
+
+            if(data.role === 'Admin'){
+              location.href = "../Dashboard/dashboard.html";
+            }
+            else
+            {
+              location.href = "/Dashboard/User/userDashboard.html"
+              //location.href = "../Dashboard/User/userDashboard.html"
+            }
+           
             
         }
         else
