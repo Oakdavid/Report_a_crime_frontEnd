@@ -38,8 +38,10 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       const role = data.role ? data.role.trim().toLowerCase() : null;
 
       if (role === 'admin') {
+        console.log("redirecting to amin dashboard");
         location.href = "../Dashboard/dashboard.html";
       } else {
+        console.log("redirecting to user dashboard");
         location.href = "/Dashboard/User/userDashboard.html";
       }
     }
