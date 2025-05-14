@@ -20,30 +20,53 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             })
         });        
         const data = await response.json();
-        console.log(data);
-        if(response.ok)
-        {
-            Swal.fire({
 
-                title: "Success",
-                icon: "success",
-                draggable: true,
-                timer: 9000,
+            console.log("Returned role from API:", data.role);
+
+
+        if (response.ok) {
+        Swal.fire({
+        title: "Success",
+        icon: "success",
+        timer: 3000,
+        showConfirmButton: false
+      });
+
+      localStorage.setItem('jwt', data.token);
+      localStorage.setItem('role', data.role);
+
+      const role = data.role ? data.role.trim().toLowerCase() : null;
+
+      if (role === 'admin') {
+        location.href = "../Dashboard/dashboard.html";
+      } else {
+        location.href = "/Dashboard/User/userDashboard.html";
+      }
+    }
+
+        // if(response.ok)
+        // {
+        //     Swal.fire({
+
+        //         title: "Success",
+        //         icon: "success",
+        //         draggable: true,
+        //         timer: 9000,
                 
-              });
-            localStorage.setItem('jwt', data.token);
-            localStorage.setItem('role', data.role);
+        //       });
+        //     localStorage.setItem('jwt', data.token);
+        //     localStorage.setItem('role', data.role);
 
-            if(data.role === 'Admin'){
-              location.href = "../Dashboard/dashboard.html";
-            }
-            else
-            {
-              location.href = "/Dashboard/User/userDashboard.html"
-            }
+        //     if(data.role === 'Admin'){
+        //       location.href = "/Dashboard/dashboard.html";
+        //     }
+        //     else
+        //     {
+        //       location.href = "/Dashboard/User/userDashboard.html"
+        //     }
            
             
-        }
+        // }
         else
         {
             Swal.fire({
