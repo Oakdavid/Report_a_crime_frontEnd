@@ -35,7 +35,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       localStorage.setItem('jwt', data.token);
       localStorage.setItem('role', data.role);
 
-      const role = data.role ? data.role.trim().toLowerCase() : null;
+      const role = data.data? data.data.trim().toLowerCase() : null;
 
       if (role === 'admin') {
         console.log("redirecting to amin dashboard");
@@ -45,30 +45,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         location.href = "/Dashboard/User/userDashboard.html";
       }
     }
-
-        // if(response.ok)
-        // {
-        //     Swal.fire({
-
-        //         title: "Success",
-        //         icon: "success",
-        //         draggable: true,
-        //         timer: 9000,
-                
-        //       });
-        //     localStorage.setItem('jwt', data.token);
-        //     localStorage.setItem('role', data.role);
-
-        //     if(data.role === 'Admin'){
-        //       location.href = "/Dashboard/dashboard.html";
-        //     }
-        //     else
-        //     {
-        //       location.href = "/Dashboard/User/userDashboard.html"
-        //     }
-           
-            
-        // }
         else
         {
             Swal.fire({
