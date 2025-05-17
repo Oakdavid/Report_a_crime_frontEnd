@@ -20,10 +20,6 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             })
         });        
         const data = await response.json();
-
-            console.log("Returned role from API:", data.role);
-
-
         if (response.ok) {
         Swal.fire({
         title: "Success",
@@ -38,22 +34,19 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       const role = data.roleName? data.roleName.trim().toLowerCase() : null;
 
       if (role === 'admin') {
-        console.log("redirecting to amin dashboard");
         location.href = "../Dashboard/dashboard.html";
       } else {
-        console.log("redirecting to user dashboard");
         location.href = "/Dashboard/User/userDashboard.html";
       }
     }
         else
         {
-            Swal.fire({
+          Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "Couldnt login",
-              });            
+          });            
         }
-
     }
     catch(error)
     {
@@ -63,10 +56,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             text: error,
           });;
     }
-    
 })
 
-document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function () {
   const params = new URLSearchParams(window.location.search);
   const messageBox = document.getElementById("logoutMessage");
 
@@ -77,5 +69,4 @@ document.addEventListener("DOMContentLoaded", function () {
       messageBox.textContent = "";
     }, 3000);
   }
-
 });
