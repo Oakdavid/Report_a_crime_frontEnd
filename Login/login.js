@@ -33,9 +33,9 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
       });
 
       localStorage.setItem('jwt', data.token);
-      localStorage.setItem('role', data.role);
+      localStorage.setItem('role', data.roleName);
 
-      const role = data.data? data.data.trim().toLowerCase() : null;
+      const role = data.roleName? data.roleName.trim().toLowerCase() : null;
 
       if (role === 'admin') {
         console.log("redirecting to amin dashboard");
