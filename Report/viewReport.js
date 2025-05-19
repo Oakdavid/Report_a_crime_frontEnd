@@ -3,6 +3,8 @@ let userrole = null;
 document.addEventListener("DOMContentLoaded", async () => {
   const token = await getToken();
   userRole = getUserRoleFromToken(token);
+
+  console.log("user role is:", userrole);
   const dataFetched = await fetchReports(token);
 
   const tableBody = document.querySelector("tbody");
@@ -11,6 +13,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (dataFetched.status) {
     //const newData = dataFetched.data.data
     const newData = dataFetched.data.data
+  console.log("Fetched reports:", newData);
+
 
       renderReports(newData,tableBody);
   } else {
@@ -42,6 +46,9 @@ async function fetchReports(token) {
       const url = role === "Admin"
         ? 'https://localhost:7240/api/Report/GetAllReports'
         : 'https://localhost:7240/api/Report/GetAllReportsByUserAsync';
+
+            console.log("Fetching reports from:", url); // ✅ Confirm endpoint
+
 
       const response = await fetch(url, {
           method: 'GET',
