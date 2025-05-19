@@ -1,14 +1,21 @@
+let userrole = null;
+
 document.addEventListener("DOMContentLoaded", async () => {
   const token = await getToken();
-  console.log("Token:", token);
+  userRole = getUserRoleFromToken(token);
+
+  console.log("user role is:", userrole);
   const dataFetched = await fetchReports(token);
-  console.log("Fetched Data:", dataFetched);
 
   const tableBody = document.querySelector("tbody");
   tableBody.innerHTML = ""; // Clear any existing rows
 
   if (dataFetched.status) {
+    //const newData = dataFetched.data.data
     const newData = dataFetched.data.data
+  console.log("Fetched reports:", newData);
+
+
       renderReports(newData,tableBody);
   } else {
     tableBody.innerHTML = `<p id="inner">No report at the moment</p>`;
@@ -19,9 +26,31 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+function getUserRoleFromToken(token){
+  try{
+    const payloadBase64 = token.split('.')[1];
+    const decodePayload = atob(payloadBase64);
+    const payload = JSON.parse(decodePayload);
+    return payload.role || payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];
+  }
+  catch(error)
+  {
+    console.error("Failed to decode token:", error)
+    return null;
+  }
+}
+
 async function fetchReports(token) {
   try {
-      const response = await fetch('https://localhost:7240/api/Report/GetAllReports', {
+      const role = getUserRoleFromToken(token);
+      const url = role === "Admin"
+        ? 'https://localhost:7240/api/Report/GetAllReports'
+        : 'https://localhost:7240/api/Report/GetAllReportsByUserAsync';
+
+            console.log("Fetching reports from:", url); // ✅ Confirm endpoint
+
+
+      const response = await fetch(url, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -40,6 +69,31 @@ async function fetchReports(token) {
       return { status: false, error: "Failed to fetch reports" };
   }
 }
+
+
+
+
+// async function fetchReports(token) {
+//   try {
+//       const response = await fetch('https://localhost:7240/api/Report/GetAllReports', {
+//           method: 'GET',
+//           headers: {
+//               'Content-Type': 'application/json',
+//               'Authorization': `Bearer ${token}`
+//           }
+//       });
+
+//       const resp = await response.json();
+
+//       if (!response.ok) {
+//           return { status: false, error: resp.message };
+//       }
+
+//       return { status: true, data: resp };
+//   } catch (error) {
+//       return { status: false, error: "Failed to fetch reports" };
+//   }
+// }
 
 function renderReports(reports, tableBody) {
   
@@ -61,10 +115,15 @@ function renderReports(reports, tableBody) {
           // Actions column
           const actionsCell = document.createElement("td");
           // const viewButton = createButton("View", "view-btn", () => viewReport(report.reportId));
-          const deleteButton = createButton("Delete", "delete-btn", () => deleteReport(report.reportId));
+         // const deleteButton = createButton("Delete", "delete-btn", () => deleteReport(report.reportId));
           
+         if (userRole === "Admin") {
+            const deleteButton = createButton("Delete", "delete-btn", () => deleteReport(report.reportId));
+            actionsCell.appendChild(deleteButton);
+          }
+
           // actionsCell.appendChild(viewButton);
-          actionsCell.appendChild(deleteButton);
+          //actionsCell.appendChild(deleteButton);
           row.appendChild(actionsCell);
 
           tableBody.appendChild(row);

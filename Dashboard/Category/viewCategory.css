@@ -100,3 +100,18 @@ body {
   .action-buttons button:hover {
     opacity: 0.9;
   }
+
+  .back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.back-button:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}

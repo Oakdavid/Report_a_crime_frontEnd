@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="../User/userDashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- <h2 class="logo">Crime Report</h2> -->
+      <img alt="Report_Crime_logo" width="200px"class="logo" src="/Pictures/report crime logo.png">
+
+      <nav class="nav">
+        <a href="#" class="nav-link active">Dashboard</a>
+        <a href="/Report/report.html" class="nav-link"> Report Crime</a>
+        <a href="/Report/viewReport.html" class="nav-link">View Reports</a>
+        <a href="#services" class="nav-link"> Request a Service</a>
+
+
+        <a href="#" id="logoutBtn" class="nav-link">Logout</a>
+      </nav>
+    </aside>
+
+   
+    <div class="main-content">
+      <header class="main-header">
+        <h1>Welcome to Your Dashboard</h1>
+        <p>Here you can view your submitted crime reports and take appropriate actions.</p>
+      </header>
+
+      <section class="summary">
+        <div class="card">
+          <h3>Your Reports</h3>
+          <p>Track, update, or review your previously reported incidents.</p>
+          <a href="/Report/viewReport.html" class="action-btn">View Reports</a>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="/Dashboard/Logout/logout.js"></script>
+</body>
+</html>
+
+
