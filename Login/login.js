@@ -30,6 +30,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
       localStorage.setItem('jwt', data.token);
       localStorage.setItem('role', data.roleName);
+      localStorage.setItem('userId', data.userId);
+
 
       const role = data.roleName? data.roleName.trim().toLowerCase() : null;
 
