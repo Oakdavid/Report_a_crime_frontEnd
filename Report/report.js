@@ -62,8 +62,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         
         try {
+
+            const token = localStorage.getItem("token");
+            const headers = {};
+            if(token){
+                headers["Authorization"] = `Bearer ${token}`;
+            }
             const response = await fetch("https://localhost:7240/api/Report/ReportCrime", {
                 method: "POST",
+                headers: headers,
                 body: formData // Send as FormData to handle file uploads
             });
 
