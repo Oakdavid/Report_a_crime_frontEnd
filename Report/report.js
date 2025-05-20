@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         const resp = await fetchLocation();
         if(resp.status === true) {
-            console.log(resp.data.data)
             location.value = resp.data.data.city
         }
 
@@ -57,12 +56,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Log FormData values (optional)
         for (let [key, value] of formData.entries()) {
-            console.log(key, value);
         }
 
         
         try {
-
            //const token = localStorage.getItem("token");
            const token = localStorage.getItem("jwt");
 
@@ -84,12 +81,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                     timer: 9000,
                     
                }).then(() => {
-                  window.location.href = "../index.html";
+                  const token = localStorage.getItem("jwt");
+                  if(token){
+                    window.location.href = "/Dashboard/User/userDashboard.html";
+                  }
+                  else{
+                    window.location.href = "/index.html";
+                  }
                 });
-
-
             } else {
-                
                 Swal.fire({
 
                     title: result.message || "Failed to create",
@@ -123,7 +123,6 @@ async function fetchCategories() {
             return { status: false, message: "Categories not found" };
         }
     } catch (error) {
-        console.error("Error fetching categories:", error);
         return { status: false, message: "An error occurred while fetching categories." };
     }
 }
@@ -145,7 +144,6 @@ async function fetchLocation() {
             return { status: false, message: "Location not found" };
         }
     } catch (error) {
-        console.error("Error fetching location:", error);
         return { status: false, message: "An error occurred while fetching location." };
     }
 }
