@@ -34,9 +34,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             location.value = resp.data.data.city
         }
 
-        // You can set the location dynamically, for now using a placeholder
-
-        // Create FormData object to send file and other fields
         const formData = new FormData();
         formData.append("categoryName", categoryDropdown.value);
         formData.append("nameOfOffender", nameOfOffender.value);
@@ -45,7 +42,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         formData.append("didItHappenInYourPresence", didHappenInPresence.value);
         formData.append("reportDescription", reportDescription.value);
         
-        // Append the file from the file input
         if (uploadEvidence.files.length > 0) {
             formData.append("uploadEvidence", uploadEvidence.files[0]);
         }
@@ -54,13 +50,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             formData.append("uploadEvidence", null);
         }
 
-        // Log FormData values (optional)
         for (let [key, value] of formData.entries()) {
         }
 
         
         try {
-           //const token = localStorage.getItem("token");
            const token = localStorage.getItem("jwt");
 
 
@@ -106,7 +100,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 });
 
-// Fetch categories function
 async function fetchCategories() {
     try {
         const response = await fetch("https://localhost:7240/api/Category/AllCategories", {
@@ -126,7 +119,6 @@ async function fetchCategories() {
         return { status: false, message: "An error occurred while fetching categories." };
     }
 }
-
 
 async function fetchLocation() {
     try {
