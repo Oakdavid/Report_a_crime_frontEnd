@@ -14,12 +14,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         alert(categories.message || "Failed to fetch categories.");
     }
 
-    // Handle form submission
     const form = document.getElementById("reportForm");
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        // Fetch form values
         const category = document.querySelector("#category");
         const nameOfOffender = document.querySelector("#nameOfOffender");
         const height = document.querySelector("#heightOfOffender");
